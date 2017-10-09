@@ -14,12 +14,10 @@ int ehPrimo(long long int N)
 int ehSuper(long long int N){
 
 	while(N>0){
-		if(!ehPrimo(N % 10)) return 0;
-			N/=10;
+	  if(!ehPrimo(N % 10)) return 0;
+	   N/=10;
 	}
-
 	return 1;
-
 }
 
 int main()
