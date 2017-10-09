@@ -32,7 +32,7 @@ int melhorSeq()
         if(x > MaiorSeqPossivel) MaiorSeqPossivel = x;
     }
 
-    return n-MaiorSeqPossivel;
+    return MaiorSeqPossivel;
 }
 
 int main()
@@ -45,7 +45,7 @@ int main()
         if(n == 0) break;
         for(i=0; i < l; i++) scanf("%d", &armarios[i]);
 
-        printf("%d\n", melhorSeq());
+        printf("%d\n", n-melhorSeq());
     }
 
     return 0;
