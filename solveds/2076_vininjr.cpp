@@ -4,12 +4,11 @@
 
 using namespace std;
 
-typedef unsigned long long int Int;
-
-vector < bool > table;
+typedef uint_fast64_t Int;
+vector<bool> table;
 
 int main() {
-    ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(0); // truque para ler entradas grandes.
+    ios_base::sync_with_stdio(false);cin.tie(nullptr);cout.tie(0); // truque para ler entradas grandes.
     Int I, F, N, T;
 
     cin >> T;
@@ -17,7 +16,7 @@ int main() {
     while (T--) {
         Int sum = 0, apl;
         cin >> I >> F >> N;
-        Int rf = (F % 2 == 0) ? F/2: F/2+1;
+        int mask = 1 << F;
         table.reserve(F + 1);
         bool check_1=false, check_2=false;
 
@@ -29,8 +28,11 @@ int main() {
             if(apl==2) check_2=true;
             for (Int k = apl; k <= F; k += apl) {
                 if (k < I) continue;
-                if (!table[k]) sum = (sum + k) % MODL;
-                table[k] = true;
+                if((mask >> k) & 1) continue;
+                sum = (sum + k) % MODL;
+                mask = mask | (1 << k);
+                // if (!table[k]) sum = (sum + k) % MODL;
+                // table[k] = true;
             }
         }
         cout << sum << endl;
